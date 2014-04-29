@@ -1,18 +1,27 @@
 var fs = require("fs");
+var HuffmanEncoding = require("./HuffmanEncoding.js");
 
 var library;
+var wordlist;
 
 fs.readFile("LyricLibrary.txt", 'utf8', function (err, data) {
 	if(err) console.log(err);
 	library = JSON.parse(data);	// parse the file as a JSON object :D
 
-	mainFunc( library );	// once read in, call the mainFunc with this object.
+
+	fs.readFile("wordlist.txt", 'utf8', function (err, data) {
+		if(err) console.log(err);
+		wordlist = JSON.parse(data);	// parse the file as a JSON object :D
+		mainFunc( library );
+	});
+							// once read in, call the mainFunc with this object.
 							// this is done because this function is asynchronous, it would
 							// go past this and continue executing code BEFORE finishing file read
 							// this function will get called when file read is DONE
 });
 
-function mainFunc( library ){
+
+function mainFunc(){
 	// library holds EVERYTHING right now
 	// it's structured like this
 	// library is an array of genre objects
@@ -27,7 +36,10 @@ function mainFunc( library ){
 	// lets traverse the whole thing once for no reason!
 
 	console.log("Beginning library traversal");
+
 	var count = 0;
+
+	var stupidObject = {};
 
 	for(var i = 0; i < library.length; i++){ 			// loop over the two genres
 
@@ -35,44 +47,50 @@ function mainFunc( library ){
 		var genreName = genreObj.genre; 				// name of the genre in STRING format
 		var subgenresArray = genreObj.subgenres; 		// ARRAY of subgenres for this genre
 
-		console.log("\tGenre: " + genreName);
-
+		var genreString = "";
 		for(var k = 0; k < subgenresArray.length; k++){ 		// loop over each genre's 4 subgenres
 
 			var subgenreObj = subgenresArray[k]; 				// subgenre object
 			var subgenreName = subgenreObj.subgenre; 			// name of the subgenre in STRING format
 			var subgenreArtistArray = subgenreObj.artists; 		// ARRAY of artists for this subgenre
 
-			console.log("\t\tSubgenre: " + subgenreName);
-
+			var subgenreString = "";
 			for(var j = 0; j < subgenreArtistArray.length; j++){ 		// loop over each subgenre's 8-12 artists
 
 				var artistObj = subgenreArtistArray[j]; 				// artist object
 				var artistName = artistObj.artist; 						// name of the artist in STRING format
 				var artistSongsArray = artistObj.songs; 				// ARRAY of songs for this artist
 
-				console.log("\t\t\tArtist name: " + artistName);
-
+				var artistString = "";
 				for(var m = 0; m < artistSongsArray.length; m++){				// loop over each artist's songs
 					
 					var songObj = artistSongsArray[m]; 							// song object
 					var songName = songObj.song; 								// name of the song in STRING format
-					var lyrics = songObj.lyrics; 								// lyrics of the song in STRING format
+					var lyrics = songObj.lyrics; 	
 
-
-					count++;		////////////////////////////////////////////////////////////////////////
-					if(count > 5){  // WARNING RICK-SAMA!!!
-						count = 0;  // THIS IS TEMPORARY SO YOU CAN CONSOLE.LOG AND SEE THE ENTIRE STRUCTURE
-						break;      // THIS LIMITS THE PRINT-OUT TO 5 SONGS EACH, REMOVE THIS WHEN YOU START
-					} 				////////////////////////////////////////////////////////////////////////
-
-					console.log("\t\t\t\tSong name: " + songName);		// I skyped logging lyrics for an obvious reason.
-
+					genreString += " " + lyrics;							// lyrics of the song in STRING format
+					subgenreString += " " + lyrics;
+					artistString += " " + lyrics;
 				}
-
+				// AT THIS POINT, the artist string containing all lyrics for an artist is built, 
+				// USE IT NOW, it will be overwritten next time around
+				stupidObject[artistName] = artistString; // example of saving it away in stupidObject
 			}
-
+			// AT THIS POINT, the subgenre string containing all lyrics for a subgenre is built, 
+			// USE IT NOW, it will be overwritten next time around
 		}
-
+		// AT THIS POINT, the genre string containing all lyrics for a genre is built, 
+		// USE IT NOW, it will be overwritten next time around
 	}
+
+	// iterate over that stupidObject!
+	for( key in stupidObject ){
+		if( ! stupidObject.hasOwnProperty(key) ) continue;
+		console.log(key); // <-- prints out each artists' name
+		// console.log(stupidObject[key]); <-- would print out the entire lyrics of that artist, HUGE
+		// from here, all the ones are yours
+		// key IS the artist name console.log(key) prints artist name
+		// stupidObject[key] is the set of ALL LYRICS for that duduemiester
+	}
+
 }
