@@ -93,7 +93,10 @@ function mainFunc(){
 
 	var count = 0;
 
-	var stupidObject = {};
+    var genres = {};
+    var subgenres = {};
+	var artists = {};
+
 
 	for(var i = 0; i < library.length; i++){ 			// loop over the two genres
 
@@ -128,19 +131,48 @@ function mainFunc(){
 				}
 				// AT THIS POINT, the artist string containing all lyrics for an artist is built, 
 				// USE IT NOW, it will be overwritten next time around
-				stupidObject[artistName] = artistString; // example of saving it away in stupidObject
+				artists[artistName] = artistString; // example of saving it away in stupidObject
+                artists[artistName].encoding = compressionForString(artists[artistName]);
+				console.log("Saved " + artistName + " 's songs+encoding:");
+
 			}
 			// AT THIS POINT, the subgenre string containing all lyrics for a subgenre is built, 
 			// USE IT NOW, it will be overwritten next time around
+            subgenres[subgenreName] = subgenreString;
+            subgenres[subgenreName].encoding = compressionForString(subgenres[subgenreName]);
+            //console.log(subgenres[subgenreName]);
 		}
 		// AT THIS POINT, the genre string containing all lyrics for a genre is built, 
 		// USE IT NOW, it will be overwritten next time around
+        genres[genreName] = genreString;
+        genres[genreName].encoding = compressionForString(subgenres[subgenreName]);
 	}
 
-	// iterate over that stupidObject!
-	for( key in stupidObject ){
-		if( ! stupidObject.hasOwnProperty(key) ) continue;
-		console.log(key); // <-- prints out each artists' name
+    //Traverse all genres
+    for( key in genres ){
+        if( ! genres.hasOwnProperty(key) ) continue;
+        //console.log(key); // <-- prints out each genre's name
+        // console.log(stupidObject[key]); <-- would print out the entire lyrics of that artist, HUGE
+        // from here, all the ones are yours
+        // key IS the artist name console.log(key) prints artist name
+        // stupidObject[key] is the set of ALL LYRICS for that duduemiester
+    }
+
+    //Traverse all subgenres
+    for( key in subgenres ){
+        if( ! subgenres.hasOwnProperty(key) ) continue;
+        //console.log(key); // <-- prints out each subgenre's name
+        // console.log(subgenres[key]); <-- would print out the entire lyrics of that subgenre, HUGE
+        // from here, all the ones are yours
+        // key IS the artist name console.log(key) prints artist name
+        // stupidObject[key] is the set of ALL LYRICS for that duduemiester
+    }
+
+
+	// Traverse all artists
+	for( key in artists ){
+		if( ! artists.hasOwnProperty(key) ) continue;
+		//console.log(key); // <-- prints out each artists' name
 		// console.log(stupidObject[key]); <-- would print out the entire lyrics of that artist, HUGE
 		// from here, all the ones are yours
 		// key IS the artist name console.log(key) prints artist name
@@ -148,13 +180,16 @@ function mainFunc(){
 	}
 
 
+
+
 	// example of huffman encoding a thing
 	var s = "How would it end If the truth was re-writable Break with past Whatever dreams you long for I've seen what the future has in mind for me Throwing the spear into the heart of the void Counting the odds Like I am out of control It's like a fight against the gravity Breaking the code's Like a mission impossible Letters that falls I'm only partly mechanical My strength is my weakness Please unfasten me Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive Stuck in a wheel I'm alive it's a miracle What should I do about the pain is this critical You know that the future looks the same for me Watching my life Leaving everything inside of me While the sun Devours our history This time there's no turning back I leave it be! Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive";
-	
-	var result = compressionForString(s);
+    var result = compressionForString(s);
+
 	// result has the properties eight (compression ratio vs eight-bits-per-char)
 		// block (compression ratio vs block encoding)
 		// and encoding (the encoding object generated, or the one you specified)
+
 
 	var encoding = result.encoding;  // EXAMPLE OF SAVING ONE ENCODING TO USE IT WITH NEXT HUFFMAN
 	console.log(result.eight);	// these console.logs should be the same, it means my code works
