@@ -97,6 +97,8 @@ function mainFunc(){
     var subgenres = {};
 	var artists = {};
 
+    var encodings = {};
+
 
 	for(var i = 0; i < library.length; i++){ 			// loop over the two genres
 
@@ -132,20 +134,20 @@ function mainFunc(){
 				// AT THIS POINT, the artist string containing all lyrics for an artist is built, 
 				// USE IT NOW, it will be overwritten next time around
 				artists[artistName] = artistString; // example of saving it away in stupidObject
-                artists[artistName].encoding = compressionForString(artists[artistName]);
+                encodings[artistName] = compressionForString(artists[artistName]);
 				console.log("Saved " + artistName + " 's songs+encoding:");
 
 			}
 			// AT THIS POINT, the subgenre string containing all lyrics for a subgenre is built, 
 			// USE IT NOW, it will be overwritten next time around
             subgenres[subgenreName] = subgenreString;
-            subgenres[subgenreName].encoding = compressionForString(subgenres[subgenreName]);
+            encodings[subgenreName] = compressionForString(subgenres[subgenreName]);
             //console.log(subgenres[subgenreName]);
 		}
 		// AT THIS POINT, the genre string containing all lyrics for a genre is built, 
 		// USE IT NOW, it will be overwritten next time around
         genres[genreName] = genreString;
-        genres[genreName].encoding = compressionForString(subgenres[subgenreName]);
+        encodings[genreName] = compressionForString(subgenres[subgenreName]);
 	}
 
     //Traverse all genres
@@ -192,6 +194,7 @@ function mainFunc(){
 
 
 	var encoding = result.encoding;  // EXAMPLE OF SAVING ONE ENCODING TO USE IT WITH NEXT HUFFMAN
+    console.log(result.encoding);
 	console.log(result.eight);	// these console.logs should be the same, it means my code works
 
 	result = compressionForString(s, encoding);
