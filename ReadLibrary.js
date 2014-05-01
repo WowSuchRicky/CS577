@@ -135,7 +135,7 @@ function mainFunc(){
 				// USE IT NOW, it will be overwritten next time around
 				artists[artistName] = artistString; // example of saving it away in stupidObject
                 encodings[artistName] = compressionForString(artists[artistName]);
-				console.log("Saved " + artistName + " 's songs+encoding:");
+				//console.log("Saved " + artistName + " 's songs+encoding:");
 
 			}
 			// AT THIS POINT, the subgenre string containing all lyrics for a subgenre is built, 
