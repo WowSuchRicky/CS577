@@ -8,6 +8,9 @@ var genres = {};
 var subgenres = {};
 var artists = {};
 
+var genreCompressedWithArtistEncoding = {};
+var subgenreCompressedWithArtistEncoding = {};
+
 var encodings = {};
 
 
@@ -161,7 +164,10 @@ function mainFunc(){
     //printLyricalDiversity();
 
     /* Subgenre Similarity */
-    printSubgenreSimilarity();
+    //printSubgenreSimilarity();
+
+    /* Most representative artists */
+    printMostRepresentativeArtists();
 
 
 
@@ -186,6 +192,73 @@ function mainFunc(){
 	// result = compressionForString(s, encoding);
 	// console.log(result.eight);	// these console.logs should be the same, it means my code works
 
+}
+
+function printMostRepresentativeArtists(){
+    var max, max2, max3;
+
+    for(key in subgenres){
+        if( ! subgenres.hasOwnProperty(key) ) continue;
+
+        for(artistKey in subgenres.artists){
+            var artistEncoding = compressionForString(artists[artistKey]).encoding;
+            var compression = compressionForString(subgenres[key], artistEncoding);
+            console.log("Compression for " + key + " using the code from " + artistKey + ": " + compression.eight);
+        }
+
+
+    }
+
+
+
+    for(var i = 0; i < library.length; i++){ 			// loop over the two genres
+
+        var genreObj = library[i]; 						// genre object
+        var genreName = genreObj.genre; 				// name of the genre in STRING format
+        var subgenresArray = genreObj.subgenres; 		// ARRAY of subgenres for this genre
+
+        for(var k = 0; k < subgenresArray.length; k++){ 		// loop over each genre's 4 subgenres
+            var genrePrinted = false;
+
+            var subgenreObj = subgenresArray[k]; 				// subgenre object
+            var subgenreName = subgenreObj.subgenre; 			// name of the subgenre in STRING format
+            var subgenreArtistArray = subgenreObj.artists; 		// ARRAY of artists for this subgenre
+
+            for(var j = 0; j < subgenreArtistArray.length; j++){ 		// loop over each subgenre's 8-12 artists
+
+                if( !genreCompressedWithArtistEncoding.hasOwnProperty(genreName) ){
+                    genreCompressedWithArtistEncoding[genreName] = {};
+                }
+
+                if( !subgenreCompressedWithArtistEncoding.hasOwnProperty(subgenreName) ){
+                    subgenreCompressedWithArtistEncoding[subgenreName] = {};
+                }
+
+                var artistObj = subgenreArtistArray[j]; 				// artist object
+                var artistName = artistObj.artist;
+
+                if( !genreCompressedWithArtistEncoding.hasOwnProperty(artistName) ){
+                    genreCompressedWithArtistEncoding[genreName][artistName] = compressionForString(genres[genreName], encodings[artistName]);
+                }
+
+                if( !subgenreCompressedWithArtistEncoding.hasOwnProperty(artistName) ){
+                    subgenreCompressedWithArtistEncoding[subgenreName][artistName] = compressionForString(subgenres[subgenreName], encodings[artistName]);
+                }
+
+            }
+        }
+    }
+
+    for(key in genreCompressedWithArtistEncoding){
+        if( !genreCompressedWithArtistEncoding.hasOwnProperty(key) ){
+            continue;
+        }
+
+        for(key2 in genreCompressedWithArtistEncoding[key]){
+            if( !genreCompressedWithArtistEncoding[key].hasOwnProperty(key2) ) continue;
+            console.log("Key: " + key + " Key2: " + key2 + " Compression: " + genreCompressedWithArtistEncoding[key][key2].eight);
+        }
+    }
 }
 
 
