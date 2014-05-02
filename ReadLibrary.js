@@ -134,7 +134,7 @@ function mainFunc(){
 				// AT THIS POINT, the artist string containing all lyrics for an artist is built, 
 				// USE IT NOW, it will be overwritten next time around
 				artists[artistName] = artistString; // example of saving it away in stupidObject
-                //encodings[artistName] = compressionForString(artists[artistName]);
+                encodings[artistName] = compressionForString(artists[artistName]);
                 //console.log(artistName);
 				//console.log("Saved " + artistName + " 's songs+encoding:");
                 //console.log(encodings[artistName].encoding);
@@ -143,16 +143,17 @@ function mainFunc(){
 			// AT THIS POINT, the subgenre string containing all lyrics for a subgenre is built, 
 			// USE IT NOW, it will be overwritten next time around
             subgenres[subgenreName] = subgenreString;
-            //encodings[subgenreName] = compressionForString(subgenres[subgenreName]);
+            encodings[subgenreName] = compressionForString(subgenres[subgenreName]);
             //console.log("----------------------------------------" + subgenreName);
             //console.log(subgenres[subgenreName]);
 		}
 		// AT THIS POINT, the genre string containing all lyrics for a genre is built, 
 		// USE IT NOW, it will be overwritten next time around
         genres[genreName] = genreString;
-        //encodings[genreName] = compressionForString(subgenres[subgenreName]);
+        encodings[genreName] = compressionForString(subgenres[subgenreName]);
 	}
 
+    var genreCompression;
     //Traverse all genres
     for( key in genres ){
         if( ! genres.hasOwnProperty(key) ) continue;
@@ -160,9 +161,14 @@ function mainFunc(){
         // console.log(stupidObject[key]); <-- would print out the entire lyrics of that artist, HUGE
         // from here, all the ones are yours
         // key IS the artist name console.log(key) prints artist name
-        // stupidObject[key] is the set of ALL LYRICS for that duduemiester
+        // genres[key] is the set of ALL LYRICS for that duduemiester
+
+        genreCompression = encodings[key];
+        console.log("Compression ratio (huffman vs. uncompressed) for " + key + ": " + genreCompression.eight);
+        console.log("Compression ratio (huffman vs. block) for " + key + ": " + genreCompression.block + "\n");
     }
 
+    var subgenreCompression;
     //Traverse all subgenres
     for( key in subgenres ){
         if( ! subgenres.hasOwnProperty(key) ) continue;
@@ -170,7 +176,11 @@ function mainFunc(){
         // console.log(subgenres[key]); <-- would print out the entire lyrics of that subgenre, HUGE
         // from here, all the ones are yours
         // key IS the artist name console.log(key) prints artist name
-        // stupidObject[key] is the set of ALL LYRICS for that duduemiester
+        // subgenres[key] is the set of ALL LYRICS for that duduemiester
+        subgenreCompression = encodings[key];
+        console.log("Compression ratio (huffman vs. uncompressed) for " + key + ": " + subgenreCompression.eight);
+        console.log("Compression ratio (huffman vs. block) for " + key + ": " + subgenreCompression.block + "\n");
+
     }
 
 
@@ -181,7 +191,7 @@ function mainFunc(){
 		// console.log(stupidObject[key]); <-- would print out the entire lyrics of that artist, HUGE
 		// from here, all the ones are yours
 		// key IS the artist name console.log(key) prints artist name
-		// stupidObject[key] is the set of ALL LYRICS for that duduemiester
+		// artists[key] is the set of ALL LYRICS for that duduemiester
 	}
 
 
@@ -189,10 +199,10 @@ function mainFunc(){
 
 	// example of huffman encoding a thing
 	var s = "How would it end If the truth was re-writable Break with past Whatever dreams you long for I've seen what the future has in mind for me Throwing the spear into the heart of the void Counting the odds Like I am out of control It's like a fight against the gravity Breaking the code's Like a mission impossible Letters that falls I'm only partly mechanical My strength is my weakness Please unfasten me Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive Stuck in a wheel I'm alive it's a miracle What should I do about the pain is this critical You know that the future looks the same for me Watching my life Leaving everything inside of me While the sun Devours our history This time there's no turning back I leave it be! Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive";
-    //var s = "hello hello hello hello hello hello hello hello hello hello hello hello hello ";
+
     var result = compressionForString(s);
 
-    console.log(result.encoding.antique, result.encoding.the);  
+    //console.log(result.encoding.antique, result.encoding.the);
 
 
 	// result has the properties eight (compression ratio vs eight-bits-per-char)
