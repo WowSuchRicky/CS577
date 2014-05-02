@@ -4,6 +4,13 @@ var HuffmanEncoding = require("./HuffmanEncoding.js");
 var library;
 var wordlist;
 
+var genres = {};
+var subgenres = {};
+var artists = {};
+
+var encodings = {};
+
+
 fs.readFile("LyricLibrary.txt", 'utf8', function (err, data) {
 	if(err) console.log(err);
 	library = JSON.parse(data);	// parse the file as a JSON object :D
@@ -93,11 +100,7 @@ function mainFunc(){
 
 	var count = 0;
 
-    var genres = {};
-    var subgenres = {};
-	var artists = {};
 
-    var encodings = {};
 
 
 	for(var i = 0; i < library.length; i++){ 			// loop over the two genres
@@ -153,6 +156,66 @@ function mainFunc(){
         encodings[genreName] = compressionForString(subgenres[subgenreName]);
 	}
 
+
+    /* Print Lyrical Diversity */
+    //printLyricalDiversity();
+
+    /* Subgenre Similarity */
+    printSubgenreSimilarity();
+
+
+
+
+
+	// example of huffman encoding a thing
+	var s = "How would it end If the truth was re-writable Break with past Whatever dreams you long for I've seen what the future has in mind for me Throwing the spear into the heart of the void Counting the odds Like I am out of control It's like a fight against the gravity Breaking the code's Like a mission impossible Letters that falls I'm only partly mechanical My strength is my weakness Please unfasten me Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive Stuck in a wheel I'm alive it's a miracle What should I do about the pain is this critical You know that the future looks the same for me Watching my life Leaving everything inside of me While the sun Devours our history This time there's no turning back I leave it be! Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive";
+
+    var result = compressionForString(s);
+
+    //console.log(result.encoding.antique, result.encoding.the);
+
+
+	// result has the properties eight (compression ratio vs eight-bits-per-char)
+		// block (compression ratio vs block encoding)
+		// and encoding (the encoding object generated, or the one you specified)
+
+ //    console.log(result.encoding);
+	// var encoding = result.encoding;  // EXAMPLE OF SAVING ONE ENCODING TO USE IT WITH NEXT HUFFMAN
+	// console.log(result.eight);	// these console.logs should be the same, it means my code works
+
+	// result = compressionForString(s, encoding);
+	// console.log(result.eight);	// these console.logs should be the same, it means my code works
+
+}
+
+
+function printSubgenreSimilarity(){
+
+    //Traverse all subgenres
+    for( key in subgenres ){
+        if( ! subgenres.hasOwnProperty(key) ) continue;
+        //console.log(key); // <-- prints out each subgenre's name
+        // console.log(subgenres[key]); <-- would print out the entire lyrics of that subgenre, HUGE
+        // from here, all the ones are yours
+        // key IS the artist name console.log(key) prints artist name
+        // subgenres[key] is the set of ALL LYRICS for that duduemiester
+
+        var subgenreEncoding = compressionForString(subgenres[key]).encoding;
+
+        var newCompression;
+        console.log("--------------BEGINNING ENCODING FOR: " + key );
+        for(key2 in subgenres){
+            if( ! subgenres.hasOwnProperty(key2) ) continue;
+            newCompression = compressionForString(subgenres[key2], subgenreEncoding);
+            console.log("Compression of " + key2 + " using encoding from " + key + ": " + newCompression.eight);
+        }
+
+
+    }
+}
+
+
+function printLyricalDiversity(){
     var genreCompression;
     //Traverse all genres
     for( key in genres ){
@@ -181,39 +244,17 @@ function mainFunc(){
         console.log("Compression ratio (huffman vs. uncompressed) for " + key + ": " + subgenreCompression.eight);
         console.log("Compression ratio (huffman vs. block) for " + key + ": " + subgenreCompression.block + "\n");
 
+
     }
 
 
-	// Traverse all artists
-	for( key in artists ){
-		if( ! artists.hasOwnProperty(key) ) continue;
-		//console.log(key); // <-- prints out each artists' name
-		// console.log(stupidObject[key]); <-- would print out the entire lyrics of that artist, HUGE
-		// from here, all the ones are yours
-		// key IS the artist name console.log(key) prints artist name
-		// artists[key] is the set of ALL LYRICS for that duduemiester
-	}
-
-
-
-
-	// example of huffman encoding a thing
-	var s = "How would it end If the truth was re-writable Break with past Whatever dreams you long for I've seen what the future has in mind for me Throwing the spear into the heart of the void Counting the odds Like I am out of control It's like a fight against the gravity Breaking the code's Like a mission impossible Letters that falls I'm only partly mechanical My strength is my weakness Please unfasten me Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive Stuck in a wheel I'm alive it's a miracle What should I do about the pain is this critical You know that the future looks the same for me Watching my life Leaving everything inside of me While the sun Devours our history This time there's no turning back I leave it be! Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive";
-
-    var result = compressionForString(s);
-
-    //console.log(result.encoding.antique, result.encoding.the);
-
-
-	// result has the properties eight (compression ratio vs eight-bits-per-char)
-		// block (compression ratio vs block encoding)
-		// and encoding (the encoding object generated, or the one you specified)
-
- //    console.log(result.encoding);
-	// var encoding = result.encoding;  // EXAMPLE OF SAVING ONE ENCODING TO USE IT WITH NEXT HUFFMAN
-	// console.log(result.eight);	// these console.logs should be the same, it means my code works
-
-	// result = compressionForString(s, encoding);
-	// console.log(result.eight);	// these console.logs should be the same, it means my code works
-
+    // Traverse all artists
+    for( key in artists ){
+        if( ! artists.hasOwnProperty(key) ) continue;
+        //console.log(key); // <-- prints out each artists' name
+        // console.log(stupidObject[key]); <-- would print out the entire lyrics of that artist, HUGE
+        // from here, all the ones are yours
+        // key IS the artist name console.log(key) prints artist name
+        // artists[key] is the set of ALL LYRICS for that duduemiester
+    }
 }
