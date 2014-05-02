@@ -117,21 +117,12 @@ BinaryHeap.prototype = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 function HuffmanEncoding(str, encoding, wordArray) {
     if(wordArray){
-        str = str + " " + wordArray.join(" ");
+       str = wordArray.join(" ") + " " + str;
     }
+
+
     
     str = str.split(" ");
 
@@ -144,6 +135,7 @@ function HuffmanEncoding(str, encoding, wordArray) {
     if( ! encoding ){  //////////////// GENERATE ENCODING
         var count_chars = {};
         for (var i = 0; i < str.length; i++){
+            if( !str[i].length ) continue;
             if (str[i] in count_chars){
                 count_chars[str[i]] ++;
             }else{

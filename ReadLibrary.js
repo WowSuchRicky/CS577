@@ -34,7 +34,7 @@ function wordCount(s){
 }
 
 function encodingWithoutList(s){
-	var newHuff = new HuffmanEncoding.HuffmanEncoding(s);
+	var newHuff = new HuffmanEncoding.HuffmanEncoding(s, null, null);
 	return newHuff.getEncoding();
 }
 
@@ -44,7 +44,7 @@ function encodingWithList(s, wordlist){
 }
 
 function encodeTextWithPreviousEncoding(s, encoding){
-	var newHuff = new HuffmanEncoding.HuffmanEncoding(s, encoding);
+	var newHuff = new HuffmanEncoding.HuffmanEncoding(s, encoding, null);
 	return newHuff.encoded_string;
 }
 
@@ -105,14 +105,14 @@ function mainFunc(){
 		var genreObj = library[i]; 						// genre object
 		var genreName = genreObj.genre; 				// name of the genre in STRING format
 		var subgenresArray = genreObj.subgenres; 		// ARRAY of subgenres for this genre
-
+		console.log("Genre: " + genreName);
 		var genreString = "";
 		for(var k = 0; k < subgenresArray.length; k++){ 		// loop over each genre's 4 subgenres
 
 			var subgenreObj = subgenresArray[k]; 				// subgenre object
 			var subgenreName = subgenreObj.subgenre; 			// name of the subgenre in STRING format
 			var subgenreArtistArray = subgenreObj.artists; 		// ARRAY of artists for this subgenre
-
+			console.log("subgenre: " + subgenreName);
 			var subgenreString = "";
 			for(var j = 0; j < subgenreArtistArray.length; j++){ 		// loop over each subgenre's 8-12 artists
 
@@ -134,7 +134,7 @@ function mainFunc(){
 				// AT THIS POINT, the artist string containing all lyrics for an artist is built, 
 				// USE IT NOW, it will be overwritten next time around
 				artists[artistName] = artistString; // example of saving it away in stupidObject
-                encodings[artistName] = compressionForString(artists[artistName]);
+                //encodings[artistName] = compressionForString(artists[artistName]);
                 //console.log(artistName);
 				//console.log("Saved " + artistName + " 's songs+encoding:");
                 //console.log(encodings[artistName].encoding);
@@ -143,14 +143,14 @@ function mainFunc(){
 			// AT THIS POINT, the subgenre string containing all lyrics for a subgenre is built, 
 			// USE IT NOW, it will be overwritten next time around
             subgenres[subgenreName] = subgenreString;
-            encodings[subgenreName] = compressionForString(subgenres[subgenreName]);
+            //encodings[subgenreName] = compressionForString(subgenres[subgenreName]);
             //console.log("----------------------------------------" + subgenreName);
             //console.log(subgenres[subgenreName]);
 		}
 		// AT THIS POINT, the genre string containing all lyrics for a genre is built, 
 		// USE IT NOW, it will be overwritten next time around
         genres[genreName] = genreString;
-        encodings[genreName] = compressionForString(subgenres[subgenreName]);
+        //encodings[genreName] = compressionForString(subgenres[subgenreName]);
 	}
 
     //Traverse all genres
@@ -188,19 +188,22 @@ function mainFunc(){
 
 
 	// example of huffman encoding a thing
-	//var s = "How would it end If the truth was re-writable Break with past Whatever dreams you long for I've seen what the future has in mind for me Throwing the spear into the heart of the void Counting the odds Like I am out of control It's like a fight against the gravity Breaking the code's Like a mission impossible Letters that falls I'm only partly mechanical My strength is my weakness Please unfasten me Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive Stuck in a wheel I'm alive it's a miracle What should I do about the pain is this critical You know that the future looks the same for me Watching my life Leaving everything inside of me While the sun Devours our history This time there's no turning back I leave it be! Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive";
-    var s = "hello hello hello hello hello hello hello hello hello hello hello hello hello ";
+	var s = "How would it end If the truth was re-writable Break with past Whatever dreams you long for I've seen what the future has in mind for me Throwing the spear into the heart of the void Counting the odds Like I am out of control It's like a fight against the gravity Breaking the code's Like a mission impossible Letters that falls I'm only partly mechanical My strength is my weakness Please unfasten me Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive Stuck in a wheel I'm alive it's a miracle What should I do about the pain is this critical You know that the future looks the same for me Watching my life Leaving everything inside of me While the sun Devours our history This time there's no turning back I leave it be! Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive";
+    //var s = "hello hello hello hello hello hello hello hello hello hello hello hello hello ";
     var result = compressionForString(s);
+
+    console.log(result.encoding.antique, result.encoding.the);  
+
 
 	// result has the properties eight (compression ratio vs eight-bits-per-char)
 		// block (compression ratio vs block encoding)
 		// and encoding (the encoding object generated, or the one you specified)
 
-    console.log(result.encoding);
-	var encoding = result.encoding;  // EXAMPLE OF SAVING ONE ENCODING TO USE IT WITH NEXT HUFFMAN
-	console.log(result.eight);	// these console.logs should be the same, it means my code works
+ //    console.log(result.encoding);
+	// var encoding = result.encoding;  // EXAMPLE OF SAVING ONE ENCODING TO USE IT WITH NEXT HUFFMAN
+	// console.log(result.eight);	// these console.logs should be the same, it means my code works
 
-	result = compressionForString(s, encoding);
-	console.log(result.eight);	// these console.logs should be the same, it means my code works
+	// result = compressionForString(s, encoding);
+	// console.log(result.eight);	// these console.logs should be the same, it means my code works
 
 }
