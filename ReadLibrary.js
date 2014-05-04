@@ -31,6 +31,12 @@ fs.readFile("LyricLibrary.txt", 'utf8', function (err, data) {
 });
 
 
+function sortByBestCompression(fieldName) {
+    return function(first, second) {
+        return first[fieldName] > second[fieldName];
+    }
+}
+
 
 
 function wordCount(s){
@@ -38,7 +44,8 @@ function wordCount(s){
 	var count = 0;
 	s = s.toLowerCase().split(" ");
 	for(var i = 0; i < s.length; i++){
-		count++;
+        if( s[i] )
+		  count++;
 	}
 	return count;
 }
@@ -59,15 +66,15 @@ function encodeTextWithPreviousEncoding(s, encoding){
 }
 
 function compressionForString(s, newEncoding){
-	var encoding;
+	var theEncoding;
 	if(newEncoding){
-		encoding = newEncoding;
+		theEncoding = newEncoding;
 	} else {
-		encoding = encodingWithList(s, wordlist);
+		theEncoding = encodingWithList(s, wordlist);
 	}
 	
-	var encodedString = encodeTextWithPreviousEncoding(s, encoding);
-	var originalLength = s.length * 8;	
+	var encodedString = encodeTextWithPreviousEncoding(s, theEncoding);
+	var originalLength = s.length * 8;
 							// 1 char = 8 bits
 	var blockCodeLength = Math.ceil( Math.log( wordlist.length ) / Math.log(2) ) * wordCount(s);
 							// compressed as block code
@@ -75,7 +82,7 @@ function compressionForString(s, newEncoding){
 							// 1 char = 1 bit
 	return { eight: encodedLength / originalLength,
 			 block: encodedLength / blockCodeLength,
-			 encoding: encoding };
+			 encoding: theEncoding };
 }
 
 
@@ -141,74 +148,33 @@ function mainFunc(){
 				// USE IT NOW, it will be overwritten next time around
 				artists[artistName] = artistString; // example of saving it away in stupidObject
                 encodings[artistName] = compressionForString(artists[artistName]);
-                //console.log(artistName);
-				//console.log("Saved " + artistName + " 's songs+encoding:");
-                //console.log(encodings[artistName].encoding);
 
 			}
 			// AT THIS POINT, the subgenre string containing all lyrics for a subgenre is built, 
 			// USE IT NOW, it will be overwritten next time around
             subgenres[subgenreName] = subgenreString;
             encodings[subgenreName] = compressionForString(subgenres[subgenreName]);
-            //console.log("----------------------------------------" + subgenreName);
-            //console.log(subgenres[subgenreName]);
 		}
 		// AT THIS POINT, the genre string containing all lyrics for a genre is built, 
 		// USE IT NOW, it will be overwritten next time around
         genres[genreName] = genreString;
-        encodings[genreName] = compressionForString(subgenres[subgenreName]);
+        encodings[genreName] = compressionForString(genres[genreName]);
 	}
 
 
+
     /* Print Lyrical Diversity */
-    //printLyricalDiversity();
+    printLyricalDiversity();
 
     /* Subgenre Similarity */
-    //printSubgenreSimilarity();
+    printSubgenreSimilarity();
 
     /* Most representative artists */
     printMostRepresentativeArtists();
 
-
-
-
-
-	// example of huffman encoding a thing
-	var s = "How would it end If the truth was re-writable Break with past Whatever dreams you long for I've seen what the future has in mind for me Throwing the spear into the heart of the void Counting the odds Like I am out of control It's like a fight against the gravity Breaking the code's Like a mission impossible Letters that falls I'm only partly mechanical My strength is my weakness Please unfasten me Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive Stuck in a wheel I'm alive it's a miracle What should I do about the pain is this critical You know that the future looks the same for me Watching my life Leaving everything inside of me While the sun Devours our history This time there's no turning back I leave it be! Infinity, for a moment in time Will memories be revived I turn the page in the chapters of life Infinity keeps me alive";
-
-    var result = compressionForString(s);
-
-    //console.log(result.encoding.antique, result.encoding.the);
-
-
-	// result has the properties eight (compression ratio vs eight-bits-per-char)
-		// block (compression ratio vs block encoding)
-		// and encoding (the encoding object generated, or the one you specified)
-
- //    console.log(result.encoding);
-	// var encoding = result.encoding;  // EXAMPLE OF SAVING ONE ENCODING TO USE IT WITH NEXT HUFFMAN
-	// console.log(result.eight);	// these console.logs should be the same, it means my code works
-
-	// result = compressionForString(s, encoding);
-	// console.log(result.eight);	// these console.logs should be the same, it means my code works
-
 }
 
 function printMostRepresentativeArtists(){
-    var max, max2, max3;
-
-    for(key in subgenres){
-        if( ! subgenres.hasOwnProperty(key) ) continue;
-
-        for(artistKey in subgenres.artists){
-            var artistEncoding = compressionForString(artists[artistKey]).encoding;
-            var compression = compressionForString(subgenres[key], artistEncoding);
-            console.log("Compression for " + key + " using the code from " + artistKey + ": " + compression.eight);
-        }
-
-
-    }
-
 
 
     for(var i = 0; i < library.length; i++){ 			// loop over the two genres
@@ -238,27 +204,66 @@ function printMostRepresentativeArtists(){
                 var artistName = artistObj.artist;
 
                 if( !genreCompressedWithArtistEncoding.hasOwnProperty(artistName) ){
-                    genreCompressedWithArtistEncoding[genreName][artistName] = compressionForString(genres[genreName], encodings[artistName]);
+                    genreCompressedWithArtistEncoding[genreName][artistName] = compressionForString(genres[genreName], encodings[artistName].encoding);
+                    console.log("Compressed GENRE " + genreName + " with " + artistName);
                 }
 
                 if( !subgenreCompressedWithArtistEncoding.hasOwnProperty(artistName) ){
-                    subgenreCompressedWithArtistEncoding[subgenreName][artistName] = compressionForString(subgenres[subgenreName], encodings[artistName]);
+                    subgenreCompressedWithArtistEncoding[subgenreName][artistName] = compressionForString(subgenres[subgenreName], encodings[artistName].encoding);
+                    console.log("Compressed SUBGENRE " + subgenreName + " with " + artistName);
                 }
 
             }
         }
     }
 
+
+
+    // FINALLY GO THROUGH AND PRINT OUT THE TOP COMPRESSIONS!
+    
+
     for(key in genreCompressedWithArtistEncoding){
-        if( !genreCompressedWithArtistEncoding.hasOwnProperty(key) ){
-            continue;
-        }
+        if( !genreCompressedWithArtistEncoding.hasOwnProperty(key) ) continue;
+
+        var compressions = [];
 
         for(key2 in genreCompressedWithArtistEncoding[key]){
             if( !genreCompressedWithArtistEncoding[key].hasOwnProperty(key2) ) continue;
-            console.log("Key: " + key + " Key2: " + key2 + " Compression: " + genreCompressedWithArtistEncoding[key][key2].eight);
+            compressions.push( {genre: genreCompressedWithArtistEncoding[key][key2], artist:key2} );
         }
+
+        compressions.sort(function(a, b){return a.genre.block-b.genre.block});
+        console.log("#1 for GENRE " + key + " --- " + compressions[0].genre.block, compressions[0].artist, key);
+        console.log("#2 for GENRE " + key + " --- " + compressions[1].genre.block, compressions[1].artist, key);
+        console.log("#3 for GENRE " + key + " --- " + compressions[2].genre.block, compressions[2].artist, key);
+        console.log("Worst for GENRE " + key + " --- " + compressions[compressions.length-1].genre.block, compressions[compressions.length-1].artist, key);
+
     }
+
+
+    
+    // loop over the subgenres compressed with artists, we need to find the best 3 for each
+
+    for(key in subgenreCompressedWithArtistEncoding){
+        if( !subgenreCompressedWithArtistEncoding.hasOwnProperty(key) ) continue;
+
+        var compressions = [];
+
+        for(key2 in subgenreCompressedWithArtistEncoding[key]){
+            if( !subgenreCompressedWithArtistEncoding[key].hasOwnProperty(key2) ) continue;
+            compressions.push( {subgenre: subgenreCompressedWithArtistEncoding[key][key2], artist: key2});
+
+        }
+
+        compressions.sort(function(a, b){return a.subgenre.block-b.subgenre.block});
+        console.log("#1 for SUBGENRE " + key + " --- " + compressions[0].subgenre.block, compressions[0].artist);
+        console.log("#2 for SUBGENRE " + key + " --- " + compressions[1].subgenre.block, compressions[1].artist);
+        console.log("#3 for SUBGENRE " + key + " --- " + compressions[2].subgenre.block, compressions[2].artist);
+        console.log("Worst for SUBGENRE " + key + " --- " + compressions[compressions.length-1].subgenre.block, compressions[compressions.length-1].artist, key);
+
+
+    }
+
 }
 
 

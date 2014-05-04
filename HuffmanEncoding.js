@@ -1,3 +1,4 @@
+var fs = require("fs");
 
 function BinaryHeap(scoreFunction){
   this.content = [];
@@ -117,22 +118,35 @@ BinaryHeap.prototype = {
 
 
 
-function HuffmanEncoding(str, encoding, wordArray) {
+function HuffmanEncoding(strArg, argEncoding, wordArray) {
+
+    var str;
+
+    // for(var i = 0; i < 3; i++){
+    //   str2 += " the";
+    // }
+
     if(wordArray){
-       str = wordArray.join(" ") + " " + str;
+      str = strArg + wordArray.join(" ");
+    } else {
+      str = strArg;
     }
 
-
     
+
+    if(!argEncoding && !wordArray){
+      console.log("Missing both encoding and word array");
+    }
+
     str = str.split(" ");
 
     for(var i = 0; i < str.length; i++){
         str[i] = str[i].toLowerCase().replace(/[^a-z]+/g, "");
     }
 
-    this.str = str;
+    this.strStr = str;
  
-    if( ! encoding ){  //////////////// GENERATE ENCODING
+    if( ! argEncoding ){  //////////////// GENERATE ENCODING
         var count_chars = {};
         for (var i = 0; i < str.length; i++){
             if( !str[i].length ) continue;
@@ -154,14 +168,15 @@ function HuffmanEncoding(str, encoding, wordArray) {
         }
      
         var tree = pq.pop();
+
         this.encoding = {};
         this._generate_encoding(tree[1], "");
     } else { ///////////////////////// USE GIVEN ENCODING
-        this.encoding = encoding;
+        this.encoding = argEncoding;
     }
 
     this.encoded_string = ""
-    for (var i = 0; i < this.str.length; i++) {
+    for (var i = 0; i < this.strStr.length; i++) {
         this.encoded_string += this.encoding[str[i]];
     }
 }
