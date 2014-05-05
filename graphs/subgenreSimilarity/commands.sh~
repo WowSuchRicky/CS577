@@ -1,0 +1,17 @@
+#!/bin/zsh
+# you must have the 'moreutils' package installed first
+
+filename="Electropop.txt"
+subgenre="ELECTROPOP"
+
+grep -A 8 "BEGINNING ENCODING FOR: ELECTROPOP" subgenresimilarity.txt > $filename
+
+sed 1d $filename | sponge $filename
+
+sed s/"$subgenre"/""/ $filename| sponge $filename
+
+sed s/"Compression of "/""/ $filename| sponge $filename   
+
+sed s/" using encoding from"/""/ $filename| sponge $filename
+
+sed s/" : "/";"/ $filename | sponge $filename
