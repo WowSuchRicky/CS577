@@ -110,77 +110,77 @@ Compression ratio (huffman vs. uncompressed) for TRADITIONAL POP: 0.231104223956
 Compression ratio (huffman vs. block) for TRADITIONAL POP: 0.6171264527996878
 
 --------------BEGINNING ENCODING FOR: POWER METAL
-Compression of POWER METAL using encoding from POWER METAL: 0.23476329895650386
-Compression of CLASSIC ROCK using encoding from POWER METAL: 0.24592802984394468
-Compression of ALTERNATIVE ROCK using encoding from POWER METAL: 0.24304422028579553
-Compression of PUNK ROCK using encoding from POWER METAL: 0.24843355901038128
-Compression of EUROPOP using encoding from POWER METAL: 0.24743875364511422
-Compression of ELECTROPOP using encoding from POWER METAL: 0.24171470569291215
-Compression of SOFT POP/ROCK using encoding from POWER METAL: 0.24261798354169678
-Compression of TRADITIONAL POP using encoding from POWER METAL: 0.246738652430946
+Compression of POWER METAL using encoding from POWER METAL: 0.6410587845174546
+Compression of CLASSIC ROCK using encoding from POWER METAL: 0.6544042415784013
+Compression of ALTERNATIVE ROCK using encoding from POWER METAL: 0.6562255374085535
+Compression of PUNK ROCK using encoding from POWER METAL: 0.6702892083615946
+Compression of EUROPOP using encoding from POWER METAL: 0.6547741462904182
+Compression of ELECTROPOP using encoding from POWER METAL: 0.6516380718716752
+Compression of SOFT POP/ROCK using encoding from POWER METAL: 0.6431098922888708
+Compression of TRADITIONAL POP using encoding from POWER METAL: 0.658875665431032
 --------------BEGINNING ENCODING FOR: CLASSIC ROCK
-Compression of POWER METAL using encoding from CLASSIC ROCK: 0.24281842379633475
-Compression of CLASSIC ROCK using encoding from CLASSIC ROCK: 0.2320020070489109
-Compression of ALTERNATIVE ROCK using encoding from CLASSIC ROCK: 0.23743914372655434
-Compression of PUNK ROCK using encoding from CLASSIC ROCK: 0.24251709715336428
-Compression of EUROPOP using encoding from CLASSIC ROCK: 0.23932916541296298
-Compression of ELECTROPOP using encoding from CLASSIC ROCK: 0.23653201170419308
-Compression of SOFT POP/ROCK using encoding from CLASSIC ROCK: 0.23540213843522667
-Compression of TRADITIONAL POP using encoding from CLASSIC ROCK: 0.23995189042651496
+Compression of POWER METAL using encoding from CLASSIC ROCK: 0.6630545928993903
+Compression of CLASSIC ROCK using encoding from CLASSIC ROCK: 0.6173476751058016
+Compression of ALTERNATIVE ROCK using encoding from CLASSIC ROCK: 0.6410916890373437
+Compression of PUNK ROCK using encoding from CLASSIC ROCK: 0.6543262259439262
+Compression of EUROPOP using encoding from CLASSIC ROCK: 0.6333144976571674
+Compression of ELECTROPOP using encoding from CLASSIC ROCK: 0.6376660600810461
+Compression of SOFT POP/ROCK using encoding from CLASSIC ROCK: 0.6239827801867392
+Compression of TRADITIONAL POP using encoding from CLASSIC ROCK: 0.6407527151444206
 --------------BEGINNING ENCODING FOR: ALTERNATIVE ROCK
-Compression of POWER METAL using encoding from ALTERNATIVE ROCK: 0.24259920324998827
-Compression of CLASSIC ROCK using encoding from ALTERNATIVE ROCK: 0.239387244089144
-Compression of ALTERNATIVE ROCK using encoding from ALTERNATIVE ROCK: 0.23293304722072397
-Compression of PUNK ROCK using encoding from ALTERNATIVE ROCK: 0.24287106165660932
-Compression of EUROPOP using encoding from ALTERNATIVE ROCK: 0.24131060309943675
-Compression of ELECTROPOP using encoding from ALTERNATIVE ROCK: 0.23713269122829617
-Compression of SOFT POP/ROCK using encoding from ALTERNATIVE ROCK: 0.2380908962940213
-Compression of TRADITIONAL POP using encoding from ALTERNATIVE ROCK: 0.24217234833724852
+Compression of POWER METAL using encoding from ALTERNATIVE ROCK: 0.662455976090005
+Compression of CLASSIC ROCK using encoding from ALTERNATIVE ROCK: 0.6369994831866341
+Compression of ALTERNATIVE ROCK using encoding from ALTERNATIVE ROCK: 0.6289251145856815
+Compression of PUNK ROCK using encoding from ALTERNATIVE ROCK: 0.6552812442096281
+Compression of EUROPOP using encoding from ALTERNATIVE ROCK: 0.6385577918076436
+Compression of ELECTROPOP using encoding from ALTERNATIVE ROCK: 0.6392854305110629
+Compression of SOFT POP/ROCK using encoding from ALTERNATIVE ROCK: 0.6311098972772292
+Compression of TRADITIONAL POP using encoding from ALTERNATIVE ROCK: 0.6466820888727853
 --------------BEGINNING ENCODING FOR: PUNK ROCK
-Compression of POWER METAL using encoding from PUNK ROCK: 0.24387500015874045
-Compression of CLASSIC ROCK using encoding from PUNK ROCK: 0.2401760046152429
-Compression of ALTERNATIVE ROCK using encoding from PUNK ROCK: 0.23893948930821937
-Compression of PUNK ROCK using encoding from PUNK ROCK: 0.2368401819395188
-Compression of EUROPOP using encoding from PUNK ROCK: 0.24202187490333593
-Compression of ELECTROPOP using encoding from PUNK ROCK: 0.2385648043780307
-Compression of SOFT POP/ROCK using encoding from PUNK ROCK: 0.23931337545767692
-Compression of TRADITIONAL POP using encoding from PUNK ROCK: 0.243494491822625
+Compression of POWER METAL using encoding from PUNK ROCK: 0.6659397438648279
+Compression of CLASSIC ROCK using encoding from PUNK ROCK: 0.6390983420852976
+Compression of ALTERNATIVE ROCK using encoding from PUNK ROCK: 0.6451426600271863
+Compression of PUNK ROCK using encoding from PUNK ROCK: 0.6390095552824342
+Compression of EUROPOP using encoding from PUNK ROCK: 0.6404399641889613
+Compression of ELECTROPOP using encoding from PUNK ROCK: 0.6431462607775537
+Compression of SOFT POP/ROCK using encoding from PUNK ROCK: 0.6343503349059133
+Compression of TRADITIONAL POP using encoding from PUNK ROCK: 0.6502126592156972
 --------------BEGINNING ENCODING FOR: EUROPOP
-Compression of POWER METAL using encoding from EUROPOP: 0.24699123371799317
-Compression of CLASSIC ROCK using encoding from EUROPOP: 0.24248562584536026
-Compression of ALTERNATIVE ROCK using encoding from EUROPOP: 0.2422218826560506
-Compression of PUNK ROCK using encoding from EUROPOP: 0.24728055964950835
-Compression of EUROPOP using encoding from EUROPOP: 0.234090675818938
-Compression of ELECTROPOP using encoding from EUROPOP: 0.23971210514450814
-Compression of SOFT POP/ROCK using encoding from EUROPOP: 0.24097518307077131
-Compression of TRADITIONAL POP using encoding from EUROPOP: 0.24365905523207268
+Compression of POWER METAL using encoding from EUROPOP: 0.6744491186548677
+Compression of CLASSIC ROCK using encoding from EUROPOP: 0.6452441479553621
+Compression of ALTERNATIVE ROCK using encoding from EUROPOP: 0.6540052050246932
+Compression of PUNK ROCK using encoding from EUROPOP: 0.6671783443063538
+Compression of EUROPOP using encoding from EUROPOP: 0.6194523701559176
+Compression of ELECTROPOP using encoding from EUROPOP: 0.6462392660507787
+Compression of SOFT POP/ROCK using encoding from EUROPOP: 0.6387553048074057
+Compression of TRADITIONAL POP using encoding from EUROPOP: 0.6506520991852244
 --------------BEGINNING ENCODING FOR: ELECTROPOP
-Compression of POWER METAL using encoding from ELECTROPOP: 0.24257443974149437
-Compression of CLASSIC ROCK using encoding from ELECTROPOP: 0.24017533802291138
-Compression of ALTERNATIVE ROCK using encoding from ELECTROPOP: 0.2383936676081195
-Compression of PUNK ROCK using encoding from ELECTROPOP: 0.2440162483442173
-Compression of EUROPOP using encoding from ELECTROPOP: 0.2396752227843189
-Compression of ELECTROPOP using encoding from ELECTROPOP: 0.23021495643132528
-Compression of SOFT POP/ROCK using encoding from ELECTROPOP: 0.23772947830852242
-Compression of TRADITIONAL POP using encoding from ELECTROPOP: 0.24143024738090202
+Compression of POWER METAL using encoding from ELECTROPOP: 0.6623883553642524
+Compression of CLASSIC ROCK using encoding from ELECTROPOP: 0.6390965683108749
+Compression of ALTERNATIVE ROCK using encoding from ELECTROPOP: 0.6436689276419599
+Compression of PUNK ROCK using encoding from ELECTROPOP: 0.6583710291860245
+Compression of EUROPOP using encoding from ELECTROPOP: 0.6342302370737266
+Compression of ELECTROPOP using encoding from ELECTROPOP: 0.6206359265353109
+Compression of SOFT POP/ROCK using encoding from ELECTROPOP: 0.6301518830429486
+Compression of TRADITIONAL POP using encoding from ELECTROPOP: 0.6447004282913867
 --------------BEGINNING ENCODING FOR: SOFT POP/ROCK
-Compression of POWER METAL using encoding from SOFT POP/ROCK: 0.2419293185971409
-Compression of CLASSIC ROCK using encoding from SOFT POP/ROCK: 0.23783456875112108
-Compression of ALTERNATIVE ROCK using encoding from SOFT POP/ROCK: 0.23809248534440275
-Compression of PUNK ROCK using encoding from SOFT POP/ROCK: 0.24378539645032452
-Compression of EUROPOP using encoding from SOFT POP/ROCK: 0.23895692086622256
-Compression of ELECTROPOP using encoding from SOFT POP/ROCK: 0.23635488456831585
-Compression of SOFT POP/ROCK using encoding from SOFT POP/ROCK: 0.23223933115936793
-Compression of TRADITIONAL POP using encoding from SOFT POP/ROCK: 0.23923637011389318
+Compression of POWER METAL using encoding from SOFT POP/ROCK: 0.6606267487651631
+Compression of CLASSIC ROCK using encoding from SOFT POP/ROCK: 0.6328678787996063
+Compression of ALTERNATIVE ROCK using encoding from SOFT POP/ROCK: 0.6428557279179218
+Compression of PUNK ROCK using encoding from SOFT POP/ROCK: 0.6577481764046911
+Compression of EUROPOP using encoding from SOFT POP/ROCK: 0.6323294615554548
+Compression of ELECTROPOP using encoding from SOFT POP/ROCK: 0.6371885434774605
+Compression of SOFT POP/ROCK using encoding from SOFT POP/ROCK: 0.6155990956106188
+Compression of TRADITIONAL POP using encoding from SOFT POP/ROCK: 0.6388420338731106
 --------------BEGINNING ENCODING FOR: TRADITIONAL POP
-Compression of POWER METAL using encoding from TRADITIONAL POP: 0.24608673069621018
-Compression of CLASSIC ROCK using encoding from TRADITIONAL POP: 0.2407534553722494
-Compression of ALTERNATIVE ROCK using encoding from TRADITIONAL POP: 0.24119095638587354
-Compression of PUNK ROCK using encoding from TRADITIONAL POP: 0.24709116532826333
-Compression of EUROPOP using encoding from TRADITIONAL POP: 0.24137756493716483
-Compression of ELECTROPOP using encoding from TRADITIONAL POP: 0.23879225172296395
-Compression of SOFT POP/ROCK using encoding from TRADITIONAL POP: 0.23750308630823336
-Compression of TRADITIONAL POP using encoding from TRADITIONAL POP: 0.23110422395653576
+Compression of POWER METAL using encoding from TRADITIONAL POP: 0.6719792283001407
+Compression of CLASSIC ROCK using encoding from TRADITIONAL POP: 0.640634914491979
+Compression of ALTERNATIVE ROCK using encoding from TRADITIONAL POP: 0.6512216780398505
+Compression of PUNK ROCK using encoding from TRADITIONAL POP: 0.6666673466369519
+Compression of EUROPOP using encoding from TRADITIONAL POP: 0.6387349866871301
+Compression of ELECTROPOP using encoding from TRADITIONAL POP: 0.6437594355071579
+Compression of SOFT POP/ROCK using encoding from TRADITIONAL POP: 0.629551783525198
+Compression of TRADITIONAL POP using encoding from TRADITIONAL POP: 0.6171264527996878
 Compressed GENRE ACTIVE ROCK with AMARANTHE
 Compressed SUBGENRE POWER METAL with AMARANTHE
 Compressed GENRE ACTIVE ROCK with DIO
