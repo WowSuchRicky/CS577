@@ -3,16 +3,14 @@
 
 mainFile="readlibraryout.txt"
 
-#filename="$1.txt"
-filename="SoftPopRock.txt"
-
+filename="$1.txt"
 subgenre="$1"
 
-grep -A 8 "BEGINNING ENCODING FOR: SOFT POP/ROCK" $mainFile > "$filename"
+grep -A 8 "BEGINNING ENCODING FOR: $subgenre" $mainFile > "$filename"
 
 sed 1d "$filename" | sponge "$filename"
 
-sed s/"SOFT POP/ROCK"/""/ "$filename"| sponge "$filename"
+sed s/"$subgenre"/""/ "$filename"| sponge "$filename"
 
 sed s/"Compression of "/""/ "$filename"| sponge "$filename"   
 
