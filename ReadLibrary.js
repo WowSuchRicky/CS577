@@ -286,7 +286,7 @@ function printSubgenreSimilarity(){
         for(key2 in subgenres){
             if( ! subgenres.hasOwnProperty(key2) ) continue;
             newCompression = compressionForString(subgenres[key2], subgenreEncoding);
-            console.log("Compression of " + key2 + " using encoding from " + key + ": " + newCompression.eight);
+            console.log("Compression of " + key2 + " using encoding from " + key + ": " + newCompression.block);
         }
 
 
