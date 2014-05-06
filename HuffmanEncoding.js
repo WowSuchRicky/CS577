@@ -115,16 +115,9 @@ BinaryHeap.prototype = {
 
 
 
-
-
-
 function HuffmanEncoding(strArg, argEncoding, wordArray) {
 
     var str;
-
-    // for(var i = 0; i < 3; i++){
-    //   str2 += " the";
-    // }
 
     if(wordArray){
       str = strArg + wordArray.join(" ");

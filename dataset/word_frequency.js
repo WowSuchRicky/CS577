@@ -59,29 +59,5 @@ function parse(dataset){
 		console.log(wordArray[i].w + ": " + wordArray[i].c);
 	}
 
-	// var commonWords = ["christmas", "feel", "antique", "tit", "shit"];
-	// var customWords = ["christmas", "jerusalem"];
-	// var swearWords = ["shit", "fuck", "damn", "bitch", "crap", "piss", "dick", "cock", "pussy", "asshole", "fag", "bastard", "slut", "douche"];
-
-	// var endings = ["", "s", "er", "ing", "y", "ty", "ly", "ily", "en", "ful", "less", "est", "ed", "ed", "or", "al", "ion", "tion", "ation", "ition", "ible", "able", "ness"];
-
-	// var wordsOfInterest = customWords;
-	
-
-
-	// for(var i = 0 ; i < wordsOfInterest.length; i++){
-	// 	var count = 0;
-	// 	var wordOfInterest = wordsOfInterest[i];
-	// 	for(var k = 0; k < wordArray.length; k++){
-	// 		var currentWord = wordArray[k];
-	// 		for(var j = 0; j < endings.length; j++){
-	// 			if( currentWord.w  == wordOfInterest + endings[j] ){
-	// 				count += currentWord.c;
-	// 			}
-	// 		}
-	// 	}
-	// 	console.log(wordOfInterest + ": " + count);
-	// }
-	
 }
 

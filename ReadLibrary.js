@@ -125,13 +125,14 @@ function mainFunc(){
 			var subgenreObj = subgenresArray[k]; 				// subgenre object
 			var subgenreName = subgenreObj.subgenre; 			// name of the subgenre in STRING format
 			var subgenreArtistArray = subgenreObj.artists; 		// ARRAY of artists for this subgenre
-			console.log("subgenre: " + subgenreName);
+			console.log("\tsubgenre: " + subgenreName);
 			var subgenreString = "";
 			for(var j = 0; j < subgenreArtistArray.length; j++){ 		// loop over each subgenre's 8-12 artists
 
 				var artistObj = subgenreArtistArray[j]; 				// artist object
 				var artistName = artistObj.artist; 						// name of the artist in STRING format
 				var artistSongsArray = artistObj.songs; 				// ARRAY of songs for this artist
+                console.log("\t\tartist: " + artistName);
 
 				var artistString = "";
 				for(var m = 0; m < artistSongsArray.length; m++){				// loop over each artist's songs
@@ -203,12 +204,12 @@ function printMostRepresentativeArtists(){
                 var artistObj = subgenreArtistArray[j]; 				// artist object
                 var artistName = artistObj.artist;
 
-                if( !genreCompressedWithArtistEncoding.hasOwnProperty(artistName) ){
+                if( !genreCompressedWithArtistEncoding[genreName].hasOwnProperty(artistName) ){
                     genreCompressedWithArtistEncoding[genreName][artistName] = compressionForString(genres[genreName], encodings[artistName].encoding);
                     console.log("Compressed GENRE " + genreName + " with " + artistName);
                 }
 
-                if( !subgenreCompressedWithArtistEncoding.hasOwnProperty(artistName) ){
+                if( !subgenreCompressedWithArtistEncoding[subgenreName].hasOwnProperty(artistName) ){
                     subgenreCompressedWithArtistEncoding[subgenreName][artistName] = compressionForString(subgenres[subgenreName], encodings[artistName].encoding);
                     console.log("Compressed SUBGENRE " + subgenreName + " with " + artistName);
                 }
